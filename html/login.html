@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Login</title> 
+</head>
+<body>
+    <form action="/login" method="post"> 
+      <div class="title">
+        <h3>Login</h3> 
+      </div>
+      <div class="field">
+        <label>Username: </label> <!-- Username field label -->
+        <input type="text" name="username" /> <!-- Username input box -->
+      </div>
+      <br />
+      <div class="field">
+        <label>Password: </label> <!-- Password field label -->
+        <input type="password" name="password" required /> <!-- Password input box, required -->
+      </div>
+      <div class="field">
+        <input class="submit-btn" type="submit" value="Submit" required /> <!-- Submit button -->
+      </div>
+      <label id="error-message"></label> <!-- Placeholder for error message -->
+    </form>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search); // Get query string parameters
+      const info = urlParams.get("info"); // Extract 'info' parameter value
+
+      if (info) {
+        const errorMessage = document.getElementById("error-message"); // Find error message label
+        errorMessage.innerText = info; // Set text of the error message
+        errorMessage.style.display = "block"; // Make error message visible
+      }
+    </script>
+</body>
+</html>

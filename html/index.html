@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" /> 
+    <title>Home</title> <!-- Title of the document shown in the browser tab -->
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div class="message-box"> <!-- Container for welcome message and links -->
+        <h1 id="welcome-message"></h1> <!-- Placeholder where the welcome message will appear -->
+        <div><a href="/private">Proceed to Admin</a></div> <!-- admin area link-->
+        <div><a href="/logout">Log Out</a></div> <!-- logout link -->
+    </div>
+    <script>
+        const req = new XMLHttpRequest(); // Create a new XMLHttpRequest object to interact with servers
+        req.onreadystatechange = function () { // Define what happens when the server response is ready to be processed
+            if (req.readyState === 4 && req.status === 200) { // Check if the request finished and response is ready, and status is "OK"
+                const user = JSON.parse(req.response).user; // Parse the JSON response and get the user object
+                document.getElementById("welcome-message").innerText = `Welcome ${user.username}!`; // Set the welcome message with the username
+            }
+        };
+        req.open("GET", "http://localhost:3000/user", true); 
+        req.send(); 
+    </script>
+</body>
+</html>
